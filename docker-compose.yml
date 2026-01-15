@@ -1,0 +1,15 @@
+services:
+  db:
+    build: ./db
+    environment:
+      POSTGRES_DB: postgres_db
+      POSTGRES_USER: user_db
+      POSTGRES_PASSWORD: passdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init_extention.sql:/docker-entrypoint-initdb.d/init_extention.sql
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data:
